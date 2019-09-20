@@ -1,14 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <title>Show message</title>
     <meta charset="UTF-8">
-    <title>Login</title>
 </head>
-?<!--<form action="#" th:action="@{/login}" th:object="${admins}" method="post">-->
-<form action="http://localhost:8888" method="post">
-    <input type="text" placeholder="Enter Username" name="name" required>
-    <input type="password" placeholder="Enter Password" name="psw" required>
-    <button type="submit">Login</button>
-</form>
+<body>
+
+<h1>Welcome</h1>
+<a href="http://localhost:8081/login">Click here to Login</a>
+
 </body>
 </html>
