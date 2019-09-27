@@ -4,6 +4,7 @@ public class Admin {
 
         private String userName;
         private String passWord;
+        private int id;
 
         public String getUserName() {
             return userName;
@@ -20,4 +21,11 @@ public class Admin {
         public void setPassWord(String passWord) {
             this.passWord = passWord;
         }
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
     }

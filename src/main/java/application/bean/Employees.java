@@ -1,4 +1,4 @@
-package application.entity;
+package application.bean;
 
 import java.util.Date;
 
@@ -28,16 +28,16 @@ public class Employees {
         public Date getDOB() { return DOB; }
         public void setDOB(Date DOB) { this.DOB = DOB; }
         public String getDesignation() {
-            return designation;
+                return designation;
         }
         public void setDesignation(String designation) {
-            this.designation = designation;
+                this.designation = designation;
         }
-        public String getAddressl() {
-            return address;
+        public String getAddress() {
+                return address;
         }
-        public void setAddressl(String addressl) {
-            this.address = address;
+        public void setAddress(String address) {
+                this.address = address;
         }
         public void setEmail(String email){ this.email = email; }
         public String getEmail(){ return email; }

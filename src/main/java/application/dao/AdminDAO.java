@@ -1,7 +1,7 @@
 package application.dao;
 
 
-import application.entity.Admins;
+import application.bean.Admin;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLOutput;
 
 public class AdminDAO {
-    public int createAdmin(Admins admin) {
+    public int createAdmin(Admin admin) {
         // Employees employee = new Employees();
         int i = 0;
         try {
@@ -49,11 +49,11 @@ public class AdminDAO {
         }
         return i;
     }
- public static void main(String arg[]){
-   // public ResultSet verifyAdmin(Admins admin){
-     Admins admin = new Admins();
-     admin.setUserName("jk");
-     admin.setPassWord("jk");
+
+    public Boolean verifyAdmin(Admin admin){
+//     Admins admin = new Admins();
+//     admin.setUserName("jk");
+//     admin.setPassWord("jk");
         ResultSet i = null;
         try {
             DBConnection connection = new DBConnection();
@@ -62,14 +62,18 @@ public class AdminDAO {
             ps.setString(1,admin.getUserName());
             ps.setString(2,admin.getPassWord());
             i = ps.executeQuery();
-            if(!i.next())
+            if(!i.next()) {
                 System.out.println("Not found");
-            else
+                return false;
+            }
+            else {
                 System.out.println("found");
+                return true;
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         }
-       // return i;
     }
 }
