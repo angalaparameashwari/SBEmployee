@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add user</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<h1>Enter employee details:</h1>
+
+<form action="#" th:action="@{/adduser}" th:object="${employees}" method="post">
+    <!--<form action="#" th:action="@{/adduser.html}" th:object="${employees}" method="post">-->
+    <p>
+    First Name: <input type="text"  placeholder="Enter firstname" th:field="*{firstname}" required>
+    </p>
+    <p>
+    Last Name: <input type="text"  placeholder="Enter lastName" th:field="*{lastName}">
+    </p>
+    <p>
+    Employee id: <input type="text"  placeholder="Enter id" th:field="*{id}" required>
+    </p>
+    <p>
+    Department: <input type="text"  placeholder="Enter departmentname" th:field="*{dept}" required>
+    </p>
+    <p>
+        date of birth: <input type="text"  placeholder="Enter date of birth" th:field="*{DOB}" required>
+    </p>
+    <p>
+    Email: <input type="text"  placeholder="Enter emai id" th:field="*{email}" required>
+    </p>
+    <p>
+    Designation: <input type="text"  placeholder="Enter designation" th:field="*{designation}" required>
+    </p>
+    <p>
+    Address: <input type="text"  placeholder="Enter address" th:field="*{address}" required>
+    </p>
+    <p>
+    Blood group: <input type="text"  placeholder="Enter blood grp" th:field="*{bloodGrp}" required>
+    </p>
+    <p>
+    gender: <input type="text"  placeholder="Enter gender" th:field="*{gender}" required>
+    </p>
+    <p>
+    Phone number: <input type="text"  placeholder="Enter phoneNumber" th:field="*{phoneNumber}" required>
+    </p>
+    <p>
+    Emergency contact number: <input type="text"  placeholder="Enter emergencyContact" th:field="*{emergencyContact}">
+    </p>
+    <p>
+    <input type="submit" value="Submit"/> <input type="reset" value="Reset">
+    </p>
+    </form>
+</body>
+</html>

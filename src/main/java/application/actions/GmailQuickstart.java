@@ -13,8 +13,6 @@ import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.gmail.Gmail;
 import com.google.api.services.gmail.GmailScopes;
-
-import javax.mail.MessagingException;
 import java.io.*;
 import java.security.GeneralSecurityException;
 import java.util.Collections;
@@ -40,7 +38,7 @@ public class GmailQuickstart {
      */
     private static Credential getCredentials(final NetHttpTransport HTTP_TRANSPORT) throws IOException {
         // Load client secrets.
-        InputStream in = GmailQuickstart.class.getResourceAsStream(CREDENTIALS_FILE_PATH);
+        InputStream in = GmailQuickstart.class.getClass().getResourceAsStream(CREDENTIALS_FILE_PATH);
         if (in == null) {
             throw new FileNotFoundException("Resource not found: " + CREDENTIALS_FILE_PATH);
         }
@@ -52,7 +50,7 @@ public class GmailQuickstart {
                 .setDataStoreFactory(new FileDataStoreFactory(new File(TOKENS_DIRECTORY_PATH)))
                 .setAccessType("offline")
                 .build();
-        LocalServerReceiver receiver = new LocalServerReceiver.Builder().setPort(8888).build();
+        LocalServerReceiver receiver = new LocalServerReceiver.Builder().setPort(8082).build();
         return new AuthorizationCodeInstalledApp(flow, receiver).authorize("user");
     }
    // public void main(String arg[]) throws GeneralSecurityException, IOException, MessagingException, com.sun.xml.internal.messaging.saaj.packaging.mime.MessagingException {

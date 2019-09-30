@@ -5,11 +5,9 @@ import com.sun.xml.internal.messaging.saaj.packaging.mime.MessagingException;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Properties;
 
 public class Engineering extends DepartmentActions {
@@ -70,21 +68,36 @@ public class Engineering extends DepartmentActions {
     public void greeting(String toGmail) throws MessagingException, IOException, javax.mail.MessagingException, GeneralSecurityException {
         super.greeting(toGmail);
         String user = "me";
-        File file = new File("/Users/cb-angalaparameashwari/Documents/AP/Employee/resources/samplemail");
-        String mailContentpath = "/Users/cb-angalaparameashwari/Documents/AP/Employee/resources/EngineeringGreeting";
+        File file = new File("/Users/cb-angalaparameashwari/Desktop/SBEmployee/src/main/resources/files/samplemail");
+        String mailContentpath = "/Users/cb-angalaparameashwari/Desktop/SBEmployee/src/main/resources/files/EngineeringGreeting";
         GmailQuickstart gmailQuickstart = new GmailQuickstart();
         EmailActions emailActions = new EmailActions();
         emailActions.sendMessage(gmailQuickstart.getGmailService(),user,emailActions.createEmailWithAttachment(toGmail,"angalaparameashwari@gmail.com",
                 "Welcome!!", FileHandler.readLineByLine(mailContentpath),file));
     }
 
+
+//    public static void main(String args[]) throws IOException, GeneralSecurityException, MessagingException, javax.mail.MessagingException {
+//        String toGmail = "angalaparameashwariap@gmail.com";
+//        //  public void greeting (String toGmail) throws
+//        //MessagingException, IOException, javax.mail.MessagingException, GeneralSecurityException {
+//        // super.greeting(toGmail);
+//        String user = "me";
+//        File file = new File("/Users/cb-angalaparameashwari/Documents/AP/Employee/resources/samplemail");
+//        String mailContentpath = "/Users/cb-angalaparameashwari/Documents/AP/Employee/resources/EngineeringGreeting";
+//        GmailQuickstart gmailQuickstart = new GmailQuickstart();
+//        EmailActions emailActions = new EmailActions();
+//        emailActions.sendMessage(gmailQuickstart.getGmailService(), user, emailActions.createEmailWithAttachment(toGmail, "angalaparameashwari@gmail.com",
+//                "Welcome!!", FileHandler.readLineByLine(mailContentpath), file));
+//    }
+
     public void repoAccess(String forGmail,String catogory, String accessType) throws MessagingException, IOException, javax.mail.MessagingException, GeneralSecurityException {
-       if(!(catogory.contains("Development") || catogory.contains("QA"))){
+       if(!(catogory.contains("Development") || catogory.contains("QA") || catogory.contains("SDET"))){
            return;
        }
         String user = "me";
-        File file = new File("/Users/cb-angalaparameashwari/Documents/AP/Employee/resources/samplemail");
-        String mailContentpath = "/Users/cb-angalaparameashwari/Documents/AP/Employee/resources/EngineeringGreeting";
+        File file = new File("/Users/cb-angalaparameashwari/Desktop/SBEmployee/src/main/resources/files/samplemail");
+        String mailContentpath = "/Users/cb-angalaparameashwari/Desktop/SBEmployee/src/main/resources/files/EngineeringGreeting";
         GmailQuickstart gmailQuickstart = new GmailQuickstart();
         EmailActions emailActions = new EmailActions();
         Properties properties = new Properties();
@@ -98,6 +111,4 @@ public class Engineering extends DepartmentActions {
                     "Repo access for " + forGmail, FileHandler.readLineByLineAppendString(mailContentpath,"the access type required is " + accessType + "\n" +reposQA )));
         }
     }
-
-
 }
