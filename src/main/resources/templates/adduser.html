@@ -8,8 +8,8 @@
 
 <h1>Enter employee details:</h1>
 
-<form action="#" th:action="@{/adduser}" th:object="${employees}" method="post">
-    <!--<form action="#" th:action="@{/adduser.html}" th:object="${employees}" method="post">-->
+<form action="#" th:action="@{/adduser}" th:object="${employee}" method="post">
+    <!--<form action="#" th:action="@{/adduser.html}" th:object="${employee}" method="post">-->
     <p>
     First Name: <input type="text"  placeholder="Enter firstname" th:field="*{firstname}" required>
     </p>

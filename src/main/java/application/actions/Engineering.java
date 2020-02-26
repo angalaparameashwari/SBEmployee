@@ -3,8 +3,7 @@ package application.actions;
 import application.utils.FileHandler;
 import com.sun.xml.internal.messaging.saaj.packaging.mime.MessagingException;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -68,8 +67,8 @@ public class Engineering extends DepartmentActions {
     public void greeting(String toGmail) throws MessagingException, IOException, javax.mail.MessagingException, GeneralSecurityException {
         super.greeting(toGmail);
         String user = "me";
-        File file = new File("/Users/cb-angalaparameashwari/Desktop/SBEmployee/src/main/resources/files/samplemail");
-        String mailContentpath = "/Users/cb-angalaparameashwari/Desktop/SBEmployee/src/main/resources/files/EngineeringGreeting";
+        File file = new File("/Users/cb-angalaparameashwari/Documents/AP/EmployeeSB/src/main/resources/files/samplemail");
+        String mailContentpath = "/Users/cb-angalaparameashwari/Documents/AP/EmployeeSB/src/main/resources/files/EngineeringGreeting";
         GmailQuickstart gmailQuickstart = new GmailQuickstart();
         EmailActions emailActions = new EmailActions();
         emailActions.sendMessage(gmailQuickstart.getGmailService(),user,emailActions.createEmailWithAttachment(toGmail,"angalaparameashwari@gmail.com",
@@ -96,18 +95,19 @@ public class Engineering extends DepartmentActions {
            return;
        }
         String user = "me";
-        File file = new File("/Users/cb-angalaparameashwari/Desktop/SBEmployee/src/main/resources/files/samplemail");
-        String mailContentpath = "/Users/cb-angalaparameashwari/Desktop/SBEmployee/src/main/resources/files/EngineeringGreeting";
+        File file = new File("/Users/cb-angalaparameashwari/Documents/AP/EmployeeSB/src/main/resources/files/samplemail");
+        String mailContentpath = "/Users/cb-angalaparameashwari/Documents/AP/EmployeeSB/src/main/resources/files/RepoAccessMail";
         GmailQuickstart gmailQuickstart = new GmailQuickstart();
         EmailActions emailActions = new EmailActions();
+        InputStream teamProps = new FileInputStream("/Users/cb-angalaparameashwari/Documents/AP/EmployeeSB/src/main/resources/teams.properties");
         Properties properties = new Properties();
-        properties.load(getClass().getClassLoader().getResourceAsStream("teams.properties"));
+        properties.load(teamProps);
         if(catogory.contains("Development"))
         emailActions.sendMessage(gmailQuickstart.getGmailService(),user,emailActions.createEmail(properties.getProperty("noc.mail"),"angalaparameashwari@gmail.com",
                 "Repo access for " + forGmail, FileHandler.readLineByLineAppendString(mailContentpath,"the access type required is " + accessType + "\n" +reposDev )));
 
         else {
-            emailActions.sendMessage(gmailQuickstart.getGmailService(),user,emailActions.createEmail(properties.getProperty("noc.mail"),"angalaparameashwari@gmail.com",
+            emailActions.sendMessage(gmailQuickstart.getGmailService(),user,emailActions.createEmail(properties.getProperty("noc.email"),"angalaparameashwari@gmail.com",
                     "Repo access for " + forGmail, FileHandler.readLineByLineAppendString(mailContentpath,"the access type required is " + accessType + "\n" +reposQA )));
         }
     }

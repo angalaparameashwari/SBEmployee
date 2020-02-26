@@ -15,8 +15,8 @@ public interface CustomerFacingTeam {
 
     static void greeting(String toGmail) throws IOException, GeneralSecurityException, MessagingException, javax.mail.MessagingException {
     String user = "me";
-    File file = new File("/Users/cb-angalaparameashwari/Desktop/SBEmployee/src/main/resources/files/samplemail");
-    String mailContentpath = "/Users/cb-angalaparameashwari/Desktop/SBEmployee/src/main/resources/files/CustomerFacingGreeting";
+    File file = new File("/Users/cb-angalaparameashwari/Documents/AP/EmployeeSB/src/main/resources/files/samplemail");
+    String mailContentpath = "/Users/cb-angalaparameashwari/Documents/AP/EmployeeSB/src/main/resources/files/CustomerFacingGreeting";
     GmailQuickstart gmailQuickstart = new GmailQuickstart();
     EmailActions emailActions = new EmailActions();
         emailActions.sendMessage(gmailQuickstart.getGmailService(),user,emailActions.createEmailWithAttachment(toGmail,"angalaparameashwari@gmail.com",

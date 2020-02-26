@@ -1,20 +1,36 @@
 package application.bean;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.Date;
 
-public class Employees {
-
+@Entity
+@Table(name = "employees")
+public class Employee{
+        @Autowired
         private String firstname;
+        @Column(name = "lastname")
         private String lastName;
+        @Id
         private int id;
+        @Column(name="department")
         private String dept;
         private Date DOB;
         private String email;
         private String designation;
         private String address;
+        @Column(name="bloodgroup")
         private String bloodGrp;
         private String gender;
+        @Column(name="phonenumber")
         private long phoneNumber;
+        @Column(name="emergencycontact")
         private long emergencyContact;
 
         public String getFirstname() { return firstname; }

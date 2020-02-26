@@ -4,11 +4,12 @@ package application.controller;
 import application.actions.Engineering;
 import application.actions.Marketing;
 import application.bean.Admin;
-import application.bean.Sample;
-import application.dao.AdminDAO;
-import application.dao.EmployeeDAO;
-import application.bean.Employees;
+import application.bean.Employee;
+import application.errorhandling.RecordNotFoundException;
+import application.services.AdminService;
+import application.services.EmployeeService;
 import com.sun.xml.internal.messaging.saaj.packaging.mime.MessagingException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -20,12 +21,13 @@ import java.security.GeneralSecurityException;
 //@SessionAttributes("userName")
 @ComponentScan("com.howtodoinjava.web")
 public class LoginController {
-    private AdminDAO adminDAO = new AdminDAO();
-    private EmployeeDAO employeeDAO = new EmployeeDAO();
-    private Employees employees = new Employees();
-    private Sample sample = new Sample();
     private Engineering engineering;
     private Marketing marketing;
+    @Autowired
+    private EmployeeService employeeService;
+    @Autowired
+    private AdminService adminService;
+
 
 
     //Index page mapping
@@ -42,63 +44,62 @@ public class LoginController {
 
     //Add user page get mapping
     @GetMapping("/adduser")
-    public String addUser(Employees employees) {
+    public String addUser(Employee employee) {
         return "adduser";
     }
 
-//        @GetMapping("/adduser")
-//    public String addUser(Sample sample) {
-//        return "adduser";
-//    }
+    //Delete user page get mapping
+    @GetMapping("/deleteuser")
+    public String deleteUser(Employee employee) {
+        return "deleteuser";
+    }
+
 
     @PostMapping("/login")
-    public String processForm(Admin admin, Employees employees) {
+    public String processForm(Admin admin) {
         System.out.println(admin.getPassWord());
-        Boolean isAdmin =  adminDAO.verifyAdmin(admin);
+      //  Boolean isAdmin =  adminDAO.verifyAdmin(admin);
+        boolean isAdmin = adminService.verifyAdmin(admin);
         if(isAdmin){
             System.out.println("Welcome");
             return "menu";
         }
         else {
             System.out.println("--------------- :(");
-            return "error"; //Validate user
+            throw new RecordNotFoundException("Admin not found");
         }
     }
 
-//    @GetMapping("/employee")
-//    public String addEmployeePage() {
-//        return "employee";
-//    }
-
     @PostMapping("/adduser")
-    public String addEmployeeDetails(Employees employees) throws MessagingException, GeneralSecurityException, javax.mail.MessagingException, IOException {
-        System.out.println(employees.getFirstname());
-        int isEmployeeAdded =  employeeDAO.createEmployee(employees);
-        if(isEmployeeAdded>0){
-            System.out.println("Employee Added");
-            greetEmployees(employees);
-            engineering.greeting("angalaparameashwariap@gmail.com");
-        }
-        else {
-            System.out.println("--------------- :( not added");
-        }
+    public String addEmp(Employee employee) throws MessagingException, GeneralSecurityException, javax.mail.MessagingException, IOException {
+        employeeService.addEmp(employee);
+        System.out.println("Employee Added");
+        greetEmployees(employee);
+        engineering.greeting(employee.getEmail());
+        return "index";
+    }
+
+    @PostMapping("/deleteUser")
+    public String deleteEmp(Employee employee) throws MessagingException, GeneralSecurityException, javax.mail.MessagingException, IOException {
+        employeeService.deleteEmployee(employee.getId());
+        System.out.println("Employee deleted");
         return "index";
     }
 
 
-    private void greetEmployees(Employees employees) throws MessagingException, GeneralSecurityException, javax.mail.MessagingException, IOException {
-        if(employees.getDept().toLowerCase().contains("engg"))
+    private void greetEmployees(Employee employee) throws MessagingException, GeneralSecurityException, javax.mail.MessagingException, IOException {
+        if(employee.getDept().toLowerCase().contains("engg"))
         {
             engineering = new Engineering();
-            engineering.greeting(employees.getEmail());
-            if(employees.getDesignation().toLowerCase().contains("dev") || employees.getDesignation().toLowerCase().contains("SDET"))
-                engineering.repoAccess(employees.getEmail(),employees.getDesignation(),"Write");
+            engineering.greeting(employee.getEmail());
+            if(employee.getDesignation().toLowerCase().contains("dev") || employee.getDesignation().toLowerCase().contains("SDET"))
+                engineering.repoAccess(employee.getEmail(), employee.getDesignation(),"Write");
             else
-                engineering.repoAccess(employees.getEmail(),employees.getDesignation(),"readonly");
+                engineering.repoAccess(employee.getEmail(), employee.getDesignation(),"readonly");
         }
-        else if(employees.getDept().toLowerCase().contains("marketing")){
+        else if(employee.getDept().toLowerCase().contains("marketing")){
             marketing = new Marketing();
-            marketing.greeting(employees.getEmail());
+            marketing.greeting(employee.getEmail());
         }
     }
 }

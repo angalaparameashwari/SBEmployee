@@ -29,50 +29,6 @@ public class EmailActions {
     private static final List<String> SCOPES = Collections.singletonList(GmailScopes.GMAIL_LABELS);
     private static final String CREDENTIALS_FILE_PATH = "/resources/credentials.json";
 
-  //  public static void main(String arg[]) throws MessagingException, javax.mail.MessagingException, IOException, GeneralSecurityException {
-            // If you don't specify credentials when constructing the client, the client library will
-            // look for credentials via the environment variable GOOGLE_APPLICATION_CREDENTIALS.
-//            Storage storage = StorageOptions.getDefaultInstance().getService();
-//
-//            System.out.println("Buckets:");
-//            Page<Bucket> buckets = storage.list();
-//            for (Bucket bucket : buckets.iterateAll()) {
-//                System.out.println(bucket.toString());
-
-//
-//       MimeMessage mimeMessage=  createEmail("angalaparameashwariap@gmail.com",
-//                "angalaparameashwari@gmail.com",
-//                "WELCOME TO CHARGEBEE !!!",
-//                "hi");
-//        sendMessage(GmailQuickstart.getGmailService(),"angalaparameashwari@gmail.com",mimeMessage);
-
- //   }
-
-//    private static Credential getCredentials(final NetHttpTransport HTTP_TRANSPORT) throws IOException {
-//        // Load client secrets.
-//        InputStream in = GmailQuickstart.class.getResourceAsStream(CREDENTIALS_FILE_PATH);
-//        if (in == null) {
-//            throw new FileNotFoundException("Resource not found: " + CREDENTIALS_FILE_PATH);
-//        }
-//        GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
-//
-//        // Build flow and trigger user authorization request.
-//        GoogleAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow.Builder(
-//                HTTP_TRANSPORT, JSON_FACTORY, clientSecrets, SCOPES)
-//                .setDataStoreFactory(new FileDataStoreFactory(new java.io.File(TOKENS_DIRECTORY_PATH)))
-//                .setAccessType("offline")
-//                .build();
-//        LocalServerReceiver receiver = new LocalServerReceiver.Builder().setPort(8888).build();
-//        return new AuthorizationCodeInstalledApp(flow, receiver).authorize("user");
-//    }
-
-//    private static Gmail getGmailService() throws IOException {
-//        Credential credential = authorize();
-//        return new Gmail.Builder(HTTP_TRANSPORT, JSON_FACTORY, credential)
-//                .setApplicationName(APPLICATION_NAME)
-//                .build();
-//    }
-
     public MimeMessage createEmail(String to,
                                           String from,
                                           String subject,
