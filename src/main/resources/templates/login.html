@@ -1,8 +1,30 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <title>Add user</title>
     <meta charset="UTF-8">
+    <style>
+    body {
+        background-image: url("../images/offHomePage_trans.png");
+        background-repeat:no-repeat;
+        background-size:cover;
+        text-align: center;
+        margin-top: 100px;
+        margin-bottom: 100px;
+        margin-right: 150px;
+        margin-left: 80px;
+    }
+
+    h1 {
+    color: white;
+    text-align: center;
+    }
+
+    p {
+    font-family: verdana;
+    font-size: 20px;
+    }
+</style>
 </head>
 <body>
 
@@ -15,9 +37,9 @@
     <p>
         Password: <input type="text"  placeholder="Enter Password" th:field="*{passWord}" required>
     </p>
-    <p>
-        id: <input type="text"  placeholder="Enter Password" th:field="*{id}" required>
-    </p>
+    <!--<p>-->
+        <!--id: <input type="text"  placeholder="Enter Password" th:field="*{id}" required>-->
+    <!--</p>-->
     <p>
         <input type="submit" value="Submit"/> <input type="reset" value="Reset">
     </p>
